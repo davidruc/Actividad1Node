@@ -11,4 +11,20 @@ const getBodegas = async (req, res)=>{
     }
 }
 
-export default getBodegas;
+const postBodegas = async (req, res)=>{
+    try{
+        const {id, nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at} = req.body;
+        const bodega = {id, nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at};
+        const connection = await getConnection();
+        const result = await connection.query("INSERT INTO bodegas SET ?", bodega);
+        res.json(result);
+    } catch (error){
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const consultasBodegas ={
+    getBodegas,
+    postBodegas
+} 
