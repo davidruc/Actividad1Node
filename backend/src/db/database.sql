@@ -1,8 +1,12 @@
+-- Active: 1688596921850@@127.0.0.1@3306@db_prueba_backend_sql
 CREATE DATABASE db_prueba_backend_sql;
+
+
+
 USE db_prueba_backend_sql;
 #CREACIÓN DE LAS TABLAS
 CREATE TABLE users(
-    id BIGINT(20) UNSIGNED,
+    id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255),
     email VARCHAR(255),
     email_verified_at TIMESTAMP,
@@ -16,7 +20,7 @@ CREATE TABLE users(
     deleted_at TIMESTAMP
 );
 CREATE TABLE productos(
-    id BIGINT(20) UNSIGNED,
+    id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255),
     descripcion VARCHAR(255),
     estado TINYINT(4),
@@ -27,7 +31,7 @@ CREATE TABLE productos(
     deleted_at TIMESTAMP
 );
 CREATE TABLE bodegas(
-    id BIGINT(20) UNSIGNED,
+    id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255),
     id_responsable BIGINT(20) UNSIGNED,
     estado TINYINT(4),
@@ -38,7 +42,7 @@ CREATE TABLE bodegas(
     deleted_at TIMESTAMP
 );
 CREATE TABLE inventarios(
-    id BIGINT(20) UNSIGNED,
+    id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     id_bodega BIGINT(20) UNSIGNED,
     id_producto BIGINT(20) UNSIGNED,
     cantidad INT(11),
@@ -49,7 +53,7 @@ CREATE TABLE inventarios(
     deleted_at TIMESTAMP
 );
 CREATE TABLE historiales(
-    id BIGINT(20) UNSIGNED,
+    id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     cantidad INT(11),
     id_bodega_origen BIGINT(20) UNSIGNED,
     id_bodega_destino BIGINT(20) UNSIGNED,
@@ -61,11 +65,11 @@ CREATE TABLE historiales(
     deleted_at TIMESTAMP
 );
 #DEFINIR LLAVES
-ALTER TABLE users ADD PRIMARY KEY (id);
-ALTER TABLE productos ADD PRIMARY KEY (id), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
-ALTER TABLE bodegas ADD PRIMARY KEY (id), ADD KEY id_responsable(id_responsable), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
-ALTER TABLE inventarios ADD PRIMARY KEY (id), ADD KEY fk_bodega(id_bodega), ADD KEY fk_producto(id_producto), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
-ALTER TABLE historiales ADD PRIMARY KEY(id), ADD KEY id_bodega_origen(id_bodega_origen), ADD KEY id_bodega_destino(id_bodega_destino), ADD KEY id_inventario(id_inventario), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
+
+ALTER TABLE productos ADD KEY created_by(created_by), ADD KEY update_by(update_by);
+ALTER TABLE bodegas ADD KEY id_responsable(id_responsable), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
+ALTER TABLE inventarios ADD KEY fk_bodega(id_bodega), ADD KEY fk_producto(id_producto), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
+ALTER TABLE historiales ADD KEY id_bodega_origen(id_bodega_origen), ADD KEY id_bodega_destino(id_bodega_destino), ADD KEY id_inventario(id_inventario), ADD KEY created_by(created_by), ADD KEY update_by(update_by);
 #AÑADIR RELACIONES ENTRE LAS LLAVES
 ALTER TABLE productos ADD CONSTRAINT id FOREIGN KEY (created_by) REFERENCES users(id), ADD CONSTRAINT id_update_by FOREIGN KEY (update_by) REFERENCES users(id);
 ALTER TABLE inventarios ADD CONSTRAINT id_bodega FOREIGN KEY (id_bodega) REFERENCES bodegas(id), ADD CONSTRAINT id_producto FOREIGN KEY (id_producto) REFERENCES productos(id), ADD CONSTRAINT created_by FOREIGN KEY (created_by) REFERENCES users(id), ADD CONSTRAINT update_by FOREIGN KEY (update_by) REFERENCES users(id);
@@ -247,9 +251,4 @@ FROM
 ORDER BY
     total DESC;
 
-DELIMITER $$
-BEGIN
-   INSERT INTO bodegas () SET ; 
-END 
-$$
 

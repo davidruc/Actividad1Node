@@ -13,13 +13,19 @@ const getProductosXtotal = async (req, res)=>{
 
 const postProducto = async (req, res)=>{
     try{
-        const {id,nombre,descripcion,estado,created_by, created_at} = req.body;
+        const {nombre,descripcion,estado,created_by, created_at} = req.body;
         
         const connection = await getConnection();
-        const values = {id,nombre,descripcion,estado,created_by, created_at};
-        const query = "INSERT INTO productos SET ?";
+        const query = "INSERT INTO productos (nombre, descripcion, estado, created_by, created_at) VALUES ( ?, ?, ?, ?, ?)";
+        const values = [nombre,descripcion,estado,created_by, created_at];
         const result = await connection.query(query, values);
-        res.json(result);
+        const id_producto = result.insertId;
+        const cantidad = 1;
+        const id_bodega = 11;
+        const valuesInventario = [id_bodega,id_producto,cantidad,created_by,created_at];
+        const query2 = "INSERT INTO inventarios (id_bodega,id_producto,cantidad,created_by,created_at) VALUES ( ?, ?, ?, ?, ?)";
+        await connection.query(query2, valuesInventario);
+        res.json({mensaje: 'se insertaron datos en productos y el producto se agregó en inventario en la bodega 11'});
     }catch (error){
         res.status(500);
         res.send(error.message);
