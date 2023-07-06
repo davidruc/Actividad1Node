@@ -18,4 +18,12 @@
 
 3. EndPoint para traer los productos ordenados por su total: *http://localhost:5010/api/productos/total*
 
-4. 
+4. EndPoint para agregar productos y que se guarden en inventario con valores de cantidad y bodega por defecto: *http://localhost:5010/api/insert/productos*
+* Los datos que se deben enviar a la base de datos son: 
+  "nombre":,
+  "descripcion":,
+  "estado":,
+  "created_by":,
+  "created_at":
+
+5. 
