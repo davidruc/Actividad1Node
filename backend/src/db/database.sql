@@ -230,3 +230,26 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `email_verified_at`, `estado`, `cr
 
 
 SELECT bodegas.id AS "identificacion", bodegas.nombre AS "nombre_bodega", bodegas.id_responsable AS "fk_responsable", users.nombre AS "nombre_del_responsable", bodegas.estado AS "Estado", bodegas.created_by AS "creada_por", bodegas.update_by AS "actualizada_por", bodegas.created_at AS "creada_el", bodegas.updated_at AS "actualizada_el", bodegas.deleted_at AS "eliminada_el" FROM bodegas INNER JOIN users ON bodegas.id_responsable = users.id ORDER BY bodegas.nombre; 
+
+SELECT
+    productos.id AS identificacion,
+    productos.nombre AS nombre_producto,
+    productos.descripcion,
+    productos.estado AS Estado,
+    productos.created_by AS creada_por,
+    productos.update_by AS actualizada_por,
+    productos.created_at AS creada_el,
+    productos.updated_at AS actualizada_el,
+    productos.deleted_at AS eliminada_el,
+    (SELECT SUM(inventarios.cantidad) FROM inventarios WHERE inventarios.id_producto = productos.id) AS total
+FROM
+    productos
+ORDER BY
+    total DESC;
+
+DELIMITER $$
+BEGIN
+   INSERT INTO bodegas () SET ; 
+END 
+$$
+
