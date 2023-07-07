@@ -1,6 +1,7 @@
 import express from "express";
-import bodegaRoute from "./routes/bodegas.routes.js"
-import productosRoute from "./routes/productos.controlles.js"
+import bodegaRoute from "./routes/bodegas.routes.js";
+import productosRoute from "./routes/productos.controlles.js";
+import inventariosRoute from "./routes/inventarios.routes.js";
 
 const app = express();
 app.set("port", 5010);
@@ -23,4 +24,24 @@ app.use("/api/bodegas", bodegaRoute);
 
 app.use("/api/productos/total", productosRoute);
 app.use("/api/insert/productos", productosRoute);
+/* 
+ Los parámetros para agregar productos y que se guarde de manera automática el inventario en una bodega default:
+ "nombre":,
+ "descripcion":,
+ "estado":,
+ "created_by":,
+ "created_at":
+ */
+
+
+
+app.use("/api/postOrUpdate/inventarios", inventariosRoute);
+/* 
+  Los parámetros para agregar o actualizar un inventario es: 
+  {
+  "id_producto":,
+  "id_bodega":,
+  "cantidad":
+}
+*/
 export default app;

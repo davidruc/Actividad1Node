@@ -251,4 +251,3 @@ FROM
 ORDER BY
     total DESC;
 
-
