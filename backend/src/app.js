@@ -1,6 +1,6 @@
 import express from "express";
 import bodegaRoute from "./routes/bodegas.routes.js";
-import productosRoute from "./routes/productos.controlles.js";
+import productosRoute from "./routes/productos.routes.js";
 import inventariosRoute from "./routes/inventarios.routes.js";
 
 const app = express();
