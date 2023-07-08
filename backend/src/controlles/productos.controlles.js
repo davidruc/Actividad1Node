@@ -31,6 +31,10 @@ const postProducto = async (req, res)=>{
         res.send(error.message);
     }
 }
+
+
+
+
 export const consultasProductos ={
     getProductosXtotal,
     postProducto

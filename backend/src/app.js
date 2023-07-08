@@ -35,7 +35,7 @@ app.use("/api/insert/productos", productosRoute);
 
 
 
-app.use("/api/postOrUpdate/inventarios", inventariosRoute);
+app.use("/api/inventarios", inventariosRoute);
 /* 
   Los parámetros para agregar o actualizar un inventario es: 
   {
@@ -44,4 +44,5 @@ app.use("/api/postOrUpdate/inventarios", inventariosRoute);
   "cantidad":
 }
 */
+
 export default app;

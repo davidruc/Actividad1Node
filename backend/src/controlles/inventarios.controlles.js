@@ -26,8 +26,32 @@ const añadir_o_actualizar_inventario = async (req,res)=>{
     }
 }
 
+//Se ingresa el id del inventario donde está el producto
+const updateProduct = async(req, res)=>{
+    try{
+        const {id} = req.params;
+        const {id_bodega, cantidad} = req.body;
+        const connection = await getConnection();
+        const result = await connection.query("SELECT * FROM inventarios WHERE id = ?", id);
+        async function traslados(){
+            const busqueda = result.find(val =>(val.cantidad >= cantidad));
+            console.log(busqueda);
+            if(busqueda !== undefined){
+                console.log("alcanza");
+            } else{
+                console.log("no alcanza el producto");
+            }
+        }
+        traslados();
+        res.json(result)
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
+}
 
 
 export const consultasInventarios ={
-    añadir_o_actualizar_inventario
+    añadir_o_actualizar_inventario,
+    updateProduct
 } 

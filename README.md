@@ -26,4 +26,5 @@
   "created_by":,
   "created_at":
 
-5. 
+5. EndPoint para agegar registros en la tabla de inventarios, los parámetros de entrada deben ser: id_producto,id_bodega,cantidad en formato JSON, En este caso si la combinación producto-bodega no existe añade un nuevo registro al inventario. Pero si existe actualiza la cantidad. *http://localhost:5010/api/inventarios*
+
