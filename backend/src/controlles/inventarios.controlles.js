@@ -54,14 +54,34 @@ const updateProduct = async(req, res)=>{
                     //Se hacen las consultas para enviar en el json tanto el dato que se le saco el producto y el dato donde se agregó la cantidad que se saco
                     const result3 = await connection.query("SELECT * FROM inventarios WHERE id = ?", id);
                     const result4 = await connection.query("SELECT * FROM inventarios WHERE id = ?", newid);
-                    res.json([result3,result4])
+
+                    //Se crean todas las veriables que necesita el historial para ingresar los datos
+                    cantidad = req.body.cantidad;
+                    const id_bodega_origen  = result3[0].id_bodega;
+                    const id_bodega_destino = result4[0].id_bodega;
+                    const id_inventario = result4[0].id;
+                    const created_by = result4[0].created_by;
+                    const update_by = result4[0].update_by;
+                    const datosHistorial = {cantidad, id_bodega_origen, id_bodega_destino, id_inventario, created_by, update_by}
+                    const insertHistorial = await connection.query("INSERT INTO historiales SET ?", datosHistorial)
+                    res.json([result3,result4,insertHistorial])
                 } else {
                     //Si la bodega a la que se está intentando meter el producto no lo tiene, crea un nuevo registro y lo añade automáticamente
                     cantidad = result[0].cantidad - cantidad;
                     const newInventario = {id_producto, id_bodega, cantidad}
                     const crearNewRegistro = await connection.query("INSERT INTO inventarios SET ?", newInventario);
                     console.log("la bodega no tenía este artículo, por lo que se creará");
-                    res.json(crearNewRegistro)
+
+                    //Se hace esto para agregar al historial
+                    cantidad = req.body.cantidad;
+                    const id_bodega_origen  = null;
+                    const id_bodega_destino = id_bodega;
+                    const id_inventario = req.params.id;
+                    const created_by = result[0].created_by;
+                    const update_by = result[0].update_by;
+                    const datosHistorial = {cantidad, id_bodega_origen, id_bodega_destino, id_inventario, created_by, update_by }
+                    const insertHistorial = await connection.query("INSERT INTO historiales SET ?", datosHistorial)
+                    res.json([crearNewRegistro, insertHistorial])
                 }
             } else{
                 res.json({message: "Estás intentando trasladar demasiados productos."})
