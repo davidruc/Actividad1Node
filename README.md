@@ -14,8 +14,6 @@
   "updated_at":,
   "deleted_at": 
 
-*Para fines de protección de la base de datos hace falta realizar la query con alias*
-
 3. EndPoint para traer los productos ordenados por su total: *http://localhost:5010/api/productos/total*
 
 4. EndPoint para agregar productos y que se guarden en inventario con valores de cantidad y bodega por defecto: *http://localhost:5010/api/insert/productos*
@@ -26,5 +24,6 @@
   "created_by":,
   "created_at":
 
-5. EndPoint para agegar registros en la tabla de inventarios, los parámetros de entrada deben ser: id_producto,id_bodega,cantidad en formato JSON, En este caso si la combinación producto-bodega no existe añade un nuevo registro al inventario. Pero si existe actualiza la cantidad. *http://localhost:5010/api/inventarios*
+5. EndPoint para agegar registros en la tabla de inventarios, los parámetros de entrada deben ser: id_producto,id_bodega,cantidad en formato JSON, En este caso si la combinación producto-bodega no existe añade un nuevo registro al inventario. Pero si existe actualiza la cantidad. *http://localhost:5010/api/inventarios* Este endPoint es un POST 
 
+6. Este endPoint permite trasladar un producto de una bodega a otra. Además agregá automaticamente al historial toda la información de la transacción. Los datos de entrada son únicamente el id_bodega que se le va a realizar el traslado y cantidad. El valor id que se envía en el endPoint es el registro de inventarios que se desea editar. *localhost:5010/api/inventarios/:id* Este endPoint es un PUT
