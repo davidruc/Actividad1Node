@@ -2,13 +2,14 @@ import express from "express";
 import bodegaRoute from "./routes/bodegas.routes.js";
 import productosRoute from "./routes/productos.routes.js";
 import inventariosRoute from "./routes/inventarios.routes.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
-app.set("port", 5010);
+
 app.use(express.json());
 
 //Routes
-
 app.use("/api/bodegas", bodegaRoute);
 /* Para el post de bodegas hay que usar las siguientes entradas:
   "id": ,
@@ -44,5 +45,7 @@ app.use("/api/inventarios", inventariosRoute);
   "cantidad":
 }
 */
+const config = JSON.parse(process.env.MY_CONFIG);
+app.listen(config, ()=>console.log(`http://${config.hostname}:${config.port}`));
 
 export default app;
