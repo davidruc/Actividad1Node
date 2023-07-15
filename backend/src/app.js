@@ -1,7 +1,7 @@
 import express from "express";
 import bodegaRoute from "./routes/bodegas.routes.js";
-import productosRoute from "./routes/productos.routes.js";
-import inventariosRoute from "./routes/inventarios.routes.js";
+import routerProduct from "./routes/productos.routes.js";
+/* import inventariosRoute from "./routes/inventarios.routes.js"; */
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -22,9 +22,8 @@ app.use("/api/bodegas", bodegaRoute);
   "updated_at":,
   "deleted_at": */
 
-
-app.use("/api/productos/total", productosRoute);
-app.use("/api/insert/productos", productosRoute);
+app.use("/api/productos/total", routerProduct);
+/* app.use("/api/insert/productos", routerProduct); */
 /* 
  Los parámetros para agregar productos y que se guarde de manera automática el inventario en una bodega default:
  "nombre":,
@@ -35,8 +34,8 @@ app.use("/api/insert/productos", productosRoute);
  */
 
 
-
-app.use("/api/inventarios", inventariosRoute);
+/* 
+app.use("/api/inventarios", inventariosRoute); */
 /* 
   Los parámetros para agregar o actualizar un inventario es: 
   {
