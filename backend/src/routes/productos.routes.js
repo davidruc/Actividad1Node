@@ -1,9 +1,9 @@
 import {Router} from "express";
 import {consultasProductos as productosControllers} from "../controlles/productos.controlles.js";
-
+import proxyProductos from "../middleware/middlewareproductos.js"
 const router = Router();
 
-router.get("/", productosControllers.getProductosXtotal);
+router.get("/", proxyProductos ,productosControllers.getProductosXtotal);
 
 router.post("/", productosControllers.postProducto);
 
