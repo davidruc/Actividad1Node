@@ -1,6 +1,6 @@
-# Proyecto citas con NODE y EXPRESS
+# Proyecto bodegas con NODE y EXPRESS
 
-Este proyecto da solución a un sistema para una eps para generar citas médicas. Por el momento se está trabajando de manera local y para fines académicos (calificativos) no se ha agregado el script de la base de datos ni la carpeta DTO al .gitignore. Se tiene el conocimiento de que estos archivos son ocultos y que deben ser ignorados en un futuro para evitar problemas en la seguridad del proyecto.  
+Este proyecto da solución a un sistema de bodegas. Por el momento se está trabajando de manera local y para fines académicos (calificativos) no se ha agregado el script de la base de datos ni la carpeta DTO al .gitignore. Se tiene el conocimiento de que estos archivos son ocultos y que deben ser ignorados en un futuro para evitar problemas en la seguridad del proyecto.  
 
 ## Tabla de contenido:
 
