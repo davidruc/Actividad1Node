@@ -1,4 +1,5 @@
 import { Router } from "express";
+import proxyInventario from "../middleware/middlewareInventario.js";
 import mysql from "mysql2";
 
 let con = undefined;
@@ -11,7 +12,7 @@ routerMovimientoInventario.use((req,res,next)=>{
 });
 
 
-routerMovimientoInventario.put("/:id?", (req, res)=>{
+routerMovimientoInventario.put("/:id?",proxyInventario ,(req, res)=>{
     con.query("SELECT * FROM inventarios WHERE id = ?", req.params.id, (err, data)=>{
       if (err) {
         console.error(`Error al obtener los datos de inventarios para el id ${req.params.id}:`, err.message);

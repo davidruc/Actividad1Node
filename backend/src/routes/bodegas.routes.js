@@ -1,5 +1,5 @@
 import {Router} from "express";
-
+import proxyBodegas from "../middleware/middlewarebodegas.js"; 
 import mysql from "mysql2";
 
 let con = undefined;
@@ -12,7 +12,7 @@ routerBodegas.use((req,res,next)=>{
 });
 
 
-routerBodegas.get("/", (req, res)=>{
+routerBodegas.get("/", proxyBodegas, (req, res)=>{
     con.query(`SELECT 
     bodegas.id AS "identificacion", 
     bodegas.nombre AS "nombre_bodega", 
@@ -35,7 +35,7 @@ routerBodegas.get("/", (req, res)=>{
           }
     })
 });
-routerBodegas.post("/", (req, res)=>{
+routerBodegas.post("/", proxyBodegas, (req, res)=>{
   con.query(`INSERT INTO bodegas SET ?`, req.body,(err, data) => {
       if (err) {
           console.error('Error al crear la bodega:', err.message);

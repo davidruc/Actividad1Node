@@ -1,15 +1,16 @@
 import {Expose, Type, Transform} from "class-transformer";
 
-export class productos{
+export class bodegas{
     @Expose({name: "id"})
     @Transform(({ value })=> parseInt(value), {toClassOnly: true})
     id: number;
     @Expose({name: "nombre"})
     @Type(()=> String)
     nombre: String;
-    @Expose({name: "descripcion"})
-    @Type(()=> String)
-    descripcion: String;
+    @Expose({name: "id_responsable"})
+    @Transform(({ value })=> parseInt(value), {toClassOnly: true})
+    id_responsable: number;
+
     @Expose({ name: 'estado' })
     @Transform(({ value }) => parseInt(value), { toClassOnly: true })
     estado: number;
@@ -35,8 +36,8 @@ export class productos{
     constructor(
         ID: number,
         nom_user: string,
-        descript: string,
-        estado_user: number,
+        responsable: number,
+        estado: number,
         createdBy: number,
         updateBy: number,
         createdAt: Date,
@@ -45,8 +46,8 @@ export class productos{
     ) {
         this.id = ID;
         this.nombre = nom_user;
-        this.descripcion = descript;
-        this.estado = estado_user;
+        this.id_responsable = responsable;
+        this.estado = estado;
         this.created_by = createdBy;
         this.update_by = updateBy;
         this.created_at = createdAt;

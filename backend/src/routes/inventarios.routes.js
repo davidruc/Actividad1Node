@@ -1,4 +1,5 @@
 import { Router } from "express";
+import proxyInventario from "../middleware/middlewareInventario.js";
 import mysql from "mysql2";
 
 let con = undefined;
@@ -11,7 +12,7 @@ routerInventario.use((req,res,next)=>{
 });
 
 
-routerInventario.post("/", (req, res)=>{
+routerInventario.post("/", proxyInventario,(req, res)=>{
     con.query(`SELECT id, id_producto,id_bodega,cantidad FROM inventarios`, (err, data)=>{
         if (err) {
             console.error('Error al obtener los datos de inventarios:', err.message);

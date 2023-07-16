@@ -1,6 +1,6 @@
 import {Expose, Type, Transform} from "class-transformer";
 
-export class productos{
+export class inventarios{
     @Expose({name: "id"})
     @Transform(({ value })=> parseInt(value), {toClassOnly: true})
     id: number;
