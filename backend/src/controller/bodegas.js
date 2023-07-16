@@ -7,7 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Expose, Type, Transform } from "class-transformer";
+import { Expose, Transform } from "class-transformer";
+import { IsInt, IsDate, MaxLength } from 'class-validator';
+import 'reflect-metadata';
 export class bodegas {
     constructor(ID, nom_user, responsable, estado, createdBy, updateBy, createdAt, updatedAt, deletedAt) {
         this.id = ID;
@@ -22,45 +24,89 @@ export class bodegas {
     }
 }
 __decorate([
-    Expose({ name: "id" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    IsInt(),
+    Expose({ name: 'id' }),
+    Transform(({ value }) => {
+        if (/^[0-9]+$/.test(value) || typeof value == "undefined")
+            return (value);
+        else
+            throw { status: 400, message: "el dato del id ingresado es incorrecto, ingresa un número entero" };
+    }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "id", void 0);
 __decorate([
     Expose({ name: "nombre" }),
-    Type(() => String),
+    MaxLength(255, { message: () => { throw { status: 401, message: `El parametro nombre no puede superar los 255 caracteres` }; } }),
+    Transform(({ value }) => { if (/^[a-z A-Z áéíóúÁÉÍÓÚñÑüÜ]+$/.test(value))
+        return value;
+    else
+        throw { status: 400, message: `El dato nombre incumple los parametros acordados` }; }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], bodegas.prototype, "nombre", void 0);
 __decorate([
     Expose({ name: "id_responsable" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => {
+        if (/^[0-9]+$/.test(value) || typeof value == "undefined")
+            return (value);
+        else
+            throw { status: 400, message: "el dato del id del responsable ingresado es incorrecto, ingresa un número entero" };
+    }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "id_responsable", void 0);
 __decorate([
     Expose({ name: 'estado' }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => {
+        if (/^[0-9]+$/.test(value) || typeof value == "undefined")
+            return (value);
+        else
+            throw { status: 400, message: "el dato del estado ingresado es incorrecto, ingresa un número entero" };
+    }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "estado", void 0);
 __decorate([
     Expose({ name: 'created_by' }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => {
+        if (/^[0-9]+$/.test(value) || typeof value == "undefined")
+            return (value);
+        else
+            throw { status: 400, message: "el dato de la persona que creó el registro ingresado es incorrecto, ingresa un número entero" };
+    }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "created_by", void 0);
 __decorate([
     Expose({ name: 'update_by' }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => {
+        if (/^[0-9]+$/.test(value) || typeof value == "undefined")
+            return (value);
+        else
+            throw { status: 400, message: "el dato de la persona que actualizó el registro es incorrecto, ingresa un número entero" };
+    }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "update_by", void 0);
 __decorate([
+    IsDate(),
     Expose({ name: 'created_at' }),
-    Type(() => Date),
+    Transform(({ value }) => { if (/^\d{4}-\d{2}-\d{2}$/.test(value) || typeof value === "undefined")
+        return (value);
+    else
+        throw { status: 400, message: `el parámetro ingresado para fecha no es válido, debe seguir la sintaxis AAAA-MM-DD` }; }, { toClassOnly: true }),
     __metadata("design:type", Date)
 ], bodegas.prototype, "created_at", void 0);
 __decorate([
+    IsDate(),
     Expose({ name: 'updated_at' }),
+    Transform(({ value }) => { if (/^\d{4}-\d{2}-\d{2}$/.test(value) || typeof value === "undefined")
+        return (value);
+    else
+        throw { status: 400, message: `el parámetro ingresado para fecha no es válido, debe seguir la sintaxis AAAA-MM-DD` }; }, { toClassOnly: true }),
     __metadata("design:type", Date)
 ], bodegas.prototype, "updated_at", void 0);
 __decorate([
+    IsDate(),
     Expose({ name: 'deleted_at' }),
+    Transform(({ value }) => { if (/^\d{4}-\d{2}-\d{2}$/.test(value) || typeof value === "undefined")
+        return (value);
+    else
+        throw { status: 400, message: `el parámetro ingresado para fecha no es válido, debe seguir la sintaxis AAAA-MM-DD` }; }, { toClassOnly: true }),
     __metadata("design:type", Date)
 ], bodegas.prototype, "deleted_at", void 0);

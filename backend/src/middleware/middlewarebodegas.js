@@ -1,13 +1,14 @@
 import express from "express"; 
 import "reflect-metadata";
 import { plainToClass } from "class-transformer";
-import {bodegas} from "../controller/bodegas.js"
+import {bodegas} from "../controller/bodegas.js";
+import { validate } from "class-validator";
 
 const proxyBodegas = express();
-proxyBodegas.use((req,res,next)=>{
+proxyBodegas.use(async (req,res,next)=>{
     try {
         let data = plainToClass(bodegas, req.body, { excludeExtraneousValues: true});
-        req.body = JSON.parse(JSON.stringify(data));
+        await validate(data);
         next();
     } catch (err) {
         res.status(err.status).send(err);

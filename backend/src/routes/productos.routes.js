@@ -35,7 +35,7 @@ routerProduct.get("/", proxyProductos , (req,res)=>{
     })
 });
 
-routerProduct.post("/", proxyProductos,(req, res)=>{
+routerProduct.post("/", proxyProductos, (req, res)=>{
   con.query(`INSERT INTO productos SET ?`, req.body, (err, data) => {
     if (err) {
         console.error('Error al crear el producto:', err.message);

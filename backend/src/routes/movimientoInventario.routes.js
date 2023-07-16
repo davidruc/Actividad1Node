@@ -1,4 +1,4 @@
-import { Router } from "express";
+/* import { Router } from "express";
 import proxyInventario from "../middleware/middlewareInventario.js";
 import mysql from "mysql2";
 
@@ -120,4 +120,4 @@ routerMovimientoInventario.put("/:id?",proxyInventario ,(req, res)=>{
     }})
   })
 
-export default routerMovimientoInventario;
+export default routerMovimientoInventario; */

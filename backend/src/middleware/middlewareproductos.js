@@ -1,13 +1,15 @@
 import express from "express"; 
 import "reflect-metadata";
 import { plainToClass } from "class-transformer";
-import {productos} from "../controller/productos.js"
+import {productos} from "../controller/productos.js";
+import { validate } from "class-validator";
 
 const proxyProductos = express();
-proxyProductos.use((req,res,next)=>{
+proxyProductos.use(async (req,res,next)=>{
     try {
         let data = plainToClass(productos, req.body, { excludeExtraneousValues: true});
-        req.body = JSON.parse(JSON.stringify(data));
+        await validate(data);
+   
         next();
     } catch (err) {
         res.status(err.status).send(err);
