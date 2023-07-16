@@ -26,8 +26,6 @@ app.use("/api/insert/productos", routerProduct);
  "created_by":,
  */
 
-
-
 app.use("/api/inventarios", routerInventario);
 app.use("/api/moverInventarios", routerInventario);
 /* //? Los parámetros para agregar o actualizar un inventario es: 
@@ -37,7 +35,6 @@ app.use("/api/moverInventarios", routerInventario);
   "cantidad":
   }
 */
-
 
 const config = JSON.parse(process.env.MY_CONFIG);
 app.listen(config, ()=>console.log(`http://${config.hostname}:${config.port}`));
