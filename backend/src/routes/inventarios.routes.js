@@ -14,10 +14,9 @@ routerInventario.use((req,res,next)=>{
 routerInventario.post("/", (req, res)=>{
     con.query(`SELECT id, id_producto,id_bodega,cantidad FROM inventarios`, (err, data)=>{
         if (err) {
-            console.error('Error al obtener los datos de las citas:', err.message);
+            console.error('Error al obtener los datos de inventarios:', err.message);
             res.sendStatus(500);
           } else {
-
             let {id_bodega, id_producto, cantidad} = req.body;
             const busqueda = data.find(val => (val.id_bodega == id_bodega && val.id_producto == id_producto));
             console.log(busqueda);
@@ -45,6 +44,4 @@ routerInventario.post("/", (req, res)=>{
     })
 });
 
-
-/* routerInventario.put("/:id", consultas.updateProduct) */
 export default routerInventario;

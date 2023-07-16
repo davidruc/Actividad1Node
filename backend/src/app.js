@@ -2,6 +2,7 @@ import express from "express";
 import bodegaRoute from "./routes/bodegas.routes.js";
 import routerProduct from "./routes/productos.routes.js";
 import routerInventario from "./routes/inventarios.routes.js";
+import routerMovimientoInventario from "./routes/movimientoInventario.routes.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -44,6 +45,11 @@ app.use("/api/inventarios", routerInventario);
   "cantidad":
 }
 */
+app.use("/api/movimiento", routerMovimientoInventario);
+
+
+
+
 const config = JSON.parse(process.env.MY_CONFIG);
 app.listen(config, ()=>console.log(`http://${config.hostname}:${config.port}`));
 
