@@ -12,7 +12,7 @@ Este proyecto da solución a un sistema para una eps para generar citas médicas
 
 ## Tecnologías
 
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="50" height="50"/><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="50" height="50"/><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="60" height="60"/><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="60" height="60"/><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="50" height="50"/> 
+<a><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="50" height="50"/></a><a><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="50" height="50"/></a><a><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="60" height="60"/></a><a><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="60" height="60"/></a><a><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="50" height="50"/> </a>
 
 ## Dependencias utilizadas
 
@@ -114,8 +114,8 @@ consumirlo
   ```
  Es importante notar que hay un DTO que se encarga de verificar que los datos ingresados sean los correctos antes de realizar las consultas a la base de datos.
 
-6. Este endPoint permite trasladar un producto de una bodega a otra. Además agregá automaticamente al historial toda la información de la transacción. *http://127.3.32.23:5000/api/moverInventarios:id* 
-
+6. Este endPoint permite trasladar un producto de una bodega a otra. Además agregá automaticamente al historial toda la información de la transacción. *http://127.3.32.23:5000/api/moverInventarios/:id* 
+* Es un parámetro obligatirio y debe ser un número entero.
 * Si la bodega a la que se le está trasladando el producto no lo tiene se crea un nuevo registro de manera automática, también agrega al historial esta acción.
 * El valor del parámetro id que se envía en el endPoint es el registro de inventarios que se desea editar.
 * Es un PUT: puede verificarse mediante Thunder client la funcionalidad del endPoint
