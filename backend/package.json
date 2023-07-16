@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -21,5 +20,6 @@
     "promise-mysql": "5.2.0",
     "reflect-metadata": "0.1.13",
     "typescript": "5.1.6"
-  }
+  },
+  "description": ""
 }

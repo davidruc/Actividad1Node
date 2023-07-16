@@ -1,7 +1,7 @@
 import express from "express";
 import bodegaRoute from "./routes/bodegas.routes.js";
 import routerProduct from "./routes/productos.routes.js";
-/* import inventariosRoute from "./routes/inventarios.routes.js"; */
+import routerInventario from "./routes/inventarios.routes.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -34,8 +34,8 @@ app.use("/api/insert/productos", routerProduct);
  */
 
 
-/* 
-app.use("/api/inventarios", inventariosRoute); */
+
+app.use("/api/inventarios", routerInventario);
 /* 
   Los parámetros para agregar o actualizar un inventario es: 
   {
