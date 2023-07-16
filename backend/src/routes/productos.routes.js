@@ -5,6 +5,13 @@ import mysql from "mysql2";
 let con = undefined;
 const routerProduct = Router();
 
+routerProduct.use((req,res,next)=>{
+  let myConfig = JSON.parse(process.env.MY_CONNECT);
+  con = mysql.createPool(myConfig)
+  next();
+});
+
+
 routerProduct.get("/", proxyProductos , (req,res)=>{
     con.query(`SELECT productos.id AS identificacion, productos.nombre AS nombre_producto, productos.descripcion, productos.estado AS Estado, productos.created_by AS creada_por, productos.update_by AS actualizada_por, productos.created_at AS creada_el, productos.updated_at AS actualizada_el, productos.deleted_at AS eliminada_el, (SELECT SUM(inventarios.cantidad) FROM inventarios WHERE inventarios.id_producto = productos.id) AS total FROM productos ORDER BY total DESC`, (err, data, fil)=>{
         if (err) {
