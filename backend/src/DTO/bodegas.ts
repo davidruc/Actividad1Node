@@ -10,7 +10,6 @@ export class bodegas{
         return (value); else throw {status:400, message: "el dato del id ingresado es incorrecto, ingresa un número entero"}}, {toClassOnly: true})
     id: number;
     @Expose({name: "nombre"})
-    @MaxLength(255, {message: ()=>{throw {status: 401, message: `El parametro nombre no puede superar los 255 caracteres`}}})
     @Transform(({value})=>{if(/^[a-z A-Z áéíóúÁÉÍÓÚñÑüÜ]+$/.test(value)) return value; else throw {status: 400, message:`El dato nombre incumple los parametros acordados`};},{ toClassOnly: true})
     nombre: String;
     @Expose({name: "id_responsable"})
@@ -18,13 +17,14 @@ export class bodegas{
         if(/^[0-9]+$/.test(value) || typeof value == "undefined") 
         return (value); else throw {status:400, message: "el dato del id del responsable ingresado es incorrecto, ingresa un número entero"}}, {toClassOnly: true})
     id_responsable: number;
+
     @Expose({ name: 'estado' })
     @Transform(({value})=>{
         if(/^[0-9]+$/.test(value) || typeof value == "undefined") 
         return (value); else throw {status:400, message: "el dato del estado ingresado es incorrecto, ingresa un número entero"}}, {toClassOnly: true})
     estado: number;
 
-
+    
     @Expose({ name: 'created_by' })
     @Transform(({value})=>{
         if(/^[0-9]+$/.test(value) || typeof value == "undefined") 

@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose, Transform } from "class-transformer";
-import { IsInt, IsDate, MaxLength } from 'class-validator';
+import { IsInt, IsDate } from 'class-validator';
 import 'reflect-metadata';
 export class bodegas {
     constructor(ID, nom_user, responsable, estado, createdBy, updateBy, createdAt, updatedAt, deletedAt) {
@@ -36,7 +36,6 @@ __decorate([
 ], bodegas.prototype, "id", void 0);
 __decorate([
     Expose({ name: "nombre" }),
-    MaxLength(255, { message: () => { throw { status: 401, message: `El parametro nombre no puede superar los 255 caracteres` }; } }),
     Transform(({ value }) => { if (/^[a-z A-Z áéíóúÁÉÍÓÚñÑüÜ]+$/.test(value))
         return value;
     else

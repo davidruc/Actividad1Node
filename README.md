@@ -63,10 +63,10 @@ consumirlo
 
 ## Solución: Endpoints
 
-1. EndPoint bodegas ordenadas alfabeticamente: *http://http://127.3.32.23:5000/api/bodegas*
+1. EndPoint bodegas ordenadas alfabeticamente: *http://127.3.32.23:5000/api/bodegas*
   * Este endPoint es un get, simplemente retorna todas las bodegas en un orden específico
 
-2. EndPoint para insertar una bodega: *http://http://127.3.32.23:5000/api/bodegas*
+2. EndPoint para insertar una bodega: *http://127.3.32.23:5000/api/bodegas*
   * Se utiliza el mismo endPoint que el anterior.
   * Es un POST: puede verificarse mediante Thunder client la funcionalidad del endPoint,
   * Es importante que envíe un formato JSON (poniendo los en los encabezados respectivos *"Content-Type": "application/json"*) 
@@ -84,10 +84,10 @@ consumirlo
   Es importante notar que hay un DTO que se encarga de verificar que los datos ingresados sean los correctos antes de realizar las consultas a la base de datos.
   
 
-3. EndPoint para traer los productos ordenados por su total: *http://http://127.3.32.23:5000/api/productos/total*
+3. EndPoint para traer los productos ordenados por su total: *http://127.3.32.23:5000/api/productos/total*
   * Este endPoint es simplemente un get que trae las bodegas ordenadas según una columna identada que habla del total.
 
-4. EndPoint para agregar productos y que se guarden en inventario con valores de cantidad y bodega por defecto: *http://http://127.3.32.23:5000/api/insert/productos*
+4. EndPoint para agregar productos y que se guarden en inventario con valores de cantidad y bodega por defecto: *http://127.3.32.23:5000/api/insert/productos*
  * Es un POST: puede verificarse mediante Thunder client la funcionalidad del endPoint
  * Es importante que envíe un formato JSON (poniendo los en los encabezados respectivos *"Content-Type": "application/json"*) 
  * Los datos que se deben enviar a la base de datos son: 
@@ -101,7 +101,7 @@ consumirlo
   ```
  Es importante notar que hay un DTO que se encarga de verificar que los datos ingresados sean los correctos antes de realizar las consultas a la base de datos.
 
-5. EndPoint para agegar registros en la tabla de inventarios. En este caso si la combinación producto-bodega no existe añade un nuevo registro al inventario. Pero si existe actualiza la cantidad. *http://http://127.3.32.23:5000/api/inventarios* 
+5. EndPoint para agegar registros en la tabla de inventarios. En este caso si la combinación producto-bodega no existe añade un nuevo registro al inventario. Pero si existe actualiza la cantidad. *http://127.3.32.23:5000/api/inventarios* 
  * Es un POST: puede verificarse mediante Thunder client la funcionalidad del endPoint
  * Es importante que envíe un formato JSON (poniendo los en los encabezados respectivos *"Content-Type": "application/json"*) 
  * Los datos que se deben enviar a la base de datos son: 
