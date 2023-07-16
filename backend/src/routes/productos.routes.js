@@ -35,7 +35,7 @@ routerProduct.get("/", proxyProductos , (req,res)=>{
     })
 });
 
-routerProduct.post("/",(req, res)=>{
+routerProduct.post("/", proxyProductos,(req, res)=>{
   con.query(`INSERT INTO productos SET ?`, req.body, (err, data) => {
     if (err) {
         console.error('Error al crear el producto:', err.message);
@@ -47,12 +47,12 @@ routerProduct.post("/",(req, res)=>{
       let {created_by, created_at} = req.body
       let values = [id_bodega, id_producto, cantidad, created_by, created_at]
       console.log(req.body);
-      con.query(`INSERT INTO inventarios(id_bodega,id_producto,cantidad,created_by,created_at) VALUES (?,?,?,?,?)`, values,(err, data2) =>{
+      con.query(`INSERT INTO inventarios(id_bodega,id_producto,cantidad,created_by,created_at) VALUES (?,?,?,?,?)`, values ,(err, data2) =>{
         if (err) {
           console.error('Error al agregar el producto a la bodega 11:', err.message);
           res.sendStatus(500);
       } else {
-        res.send(data2)
+        res.send([data, data2, {message: "se agregó el producto en la bodega 11"}])
       }
       } )
     }

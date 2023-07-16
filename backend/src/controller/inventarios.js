@@ -9,11 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Expose, Type, Transform } from "class-transformer";
 export class productos {
-    constructor(ID, nom_user, descript, estado_user, createdBy, updateBy, createdAt, updatedAt, deletedAt) {
+    constructor(ID, bodega, producto, cantidad, createdBy, updateBy, createdAt, updatedAt, deletedAt) {
         this.id = ID;
-        this.nombre = nom_user;
-        this.descripcion = descript;
-        this.estado = estado_user;
+        this.id_bodega = bodega;
+        this.id_producto = producto;
+        this.cantidad = cantidad;
         this.created_by = createdBy;
         this.update_by = updateBy;
         this.created_at = createdAt;
@@ -27,27 +27,27 @@ __decorate([
     __metadata("design:type", Number)
 ], productos.prototype, "id", void 0);
 __decorate([
-    Expose({ name: "nombre" }),
-    Type(() => String),
-    __metadata("design:type", String)
-], productos.prototype, "nombre", void 0);
-__decorate([
-    Expose({ name: "descripcion" }),
-    Type(() => String),
-    __metadata("design:type", String)
-], productos.prototype, "descripcion", void 0);
-__decorate([
-    Expose({ name: 'estado' }),
+    Expose({ name: "id_bodega" }),
     Transform(({ value }) => parseInt(value), { toClassOnly: true }),
     __metadata("design:type", Number)
-], productos.prototype, "estado", void 0);
+], productos.prototype, "id_bodega", void 0);
 __decorate([
-    Expose({ name: 'created_by' }),
+    Expose({ name: "id_producto" }),
+    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    __metadata("design:type", Number)
+], productos.prototype, "id_producto", void 0);
+__decorate([
+    Expose({ name: "cantidad" }),
+    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    __metadata("design:type", Number)
+], productos.prototype, "cantidad", void 0);
+__decorate([
+    Expose({ name: "created_by" }),
     Transform(({ value }) => parseInt(value), { toClassOnly: true }),
     __metadata("design:type", Number)
 ], productos.prototype, "created_by", void 0);
 __decorate([
-    Expose({ name: 'update_by' }),
+    Expose({ name: "update_by" }),
     Transform(({ value }) => parseInt(value), { toClassOnly: true }),
     __metadata("design:type", Number)
 ], productos.prototype, "update_by", void 0);
@@ -58,9 +58,11 @@ __decorate([
 ], productos.prototype, "created_at", void 0);
 __decorate([
     Expose({ name: 'updated_at' }),
+    Type(() => Date),
     __metadata("design:type", Date)
 ], productos.prototype, "updated_at", void 0);
 __decorate([
     Expose({ name: 'deleted_at' }),
+    Type(() => Date),
     __metadata("design:type", Date)
 ], productos.prototype, "deleted_at", void 0);

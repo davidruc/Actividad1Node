@@ -4,22 +4,20 @@ export class productos{
     @Expose({name: "id"})
     @Transform(({ value })=> parseInt(value), {toClassOnly: true})
     id: number;
-    @Expose({name: "nombre"})
-    @Type(()=> String)
-    nombre: String;
-    @Expose({name: "descripcion"})
-    @Type(()=> String)
-    descripcion: String;
-    @Expose({ name: 'estado' })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
-    estado: number;
-
-    @Expose({ name: 'created_by' })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Expose({name: "id_bodega"})
+    @Transform(({ value })=> parseInt(value), {toClassOnly: true})
+    id_bodega: number;
+    @Expose({name: "id_producto"})
+    @Transform(({ value })=> parseInt(value), {toClassOnly: true})
+    id_producto: number;
+    @Expose({name: "cantidad"})
+    @Transform(({ value })=> parseInt(value), {toClassOnly: true})
+    cantidad: number;
+    @Expose({name: "created_by"})
+    @Transform(({ value })=> parseInt(value), {toClassOnly: true})
     created_by: number;
-
-    @Expose({ name: 'update_by' })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Expose({name: "update_by"})
+    @Transform(({ value })=> parseInt(value), {toClassOnly: true})
     update_by: number;
 
     @Expose({ name: 'created_at' })
@@ -27,16 +25,18 @@ export class productos{
     created_at: Date;
 
     @Expose({ name: 'updated_at' })
+    @Type(() => Date)
     updated_at: Date;
 
     @Expose({ name: 'deleted_at' })
+    @Type(() => Date)
     deleted_at: Date;
 
     constructor(
         ID: number,
-        nom_user: string,
-        descript: string,
-        estado_user: number,
+        bodega: number,
+        producto: number,
+        cantidad: number,
         createdBy: number,
         updateBy: number,
         createdAt: Date,
@@ -44,9 +44,9 @@ export class productos{
         deletedAt: Date
     ) {
         this.id = ID;
-        this.nombre = nom_user;
-        this.descripcion = descript;
-        this.estado = estado_user;
+        this.id_bodega = bodega;
+        this.id_producto = producto;
+        this.cantidad = cantidad;
         this.created_by = createdBy;
         this.update_by = updateBy;
         this.created_at = createdAt;
