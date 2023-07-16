@@ -1,5 +1,5 @@
 import {Expose, Transform} from "class-transformer";
-import {IsInt, IsDate, MaxLength} from 'class-validator';
+import {IsInt, IsDate} from 'class-validator';
 import 'reflect-metadata';
 
 export class productos{
@@ -10,11 +10,11 @@ export class productos{
         return (value); else throw {status:400, message: "el dato del id ingresado es incorrecto, ingresa un número entero"}}, {toClassOnly: true})
     id: number;
     @Expose({name: "nombre"})
-    @MaxLength(255, {message: ()=>{throw {status: 401, message: `El parametro nombre no puede superar los 255 caracteres`}}})
+    
     @Transform(({value})=>{if(/^[a-z A-Z áéíóúÁÉÍÓÚñÑüÜ]+$/.test(value)) return value; else throw {status: 400, message:`El dato nombre incumple los parametros acordados`};},{ toClassOnly: true})
     nombre: String;
     @Expose({name: "descripcion"})
-    @MaxLength(255, {message: ()=>{throw {status: 401, message: `El parametro descripción no puede pasar los 255 caracteres`}}})
+    
     @Transform(({value})=>{if(/^[a-z A-Z áéíóúÁÉÍÓÚñÑüÜ]+$/.test(value)) return value; else throw {status: 400, message:`El dato descripcion incumple los parametros acordados`};},{ toClassOnly: true})
     descripcion: String;
     @Expose({ name: 'estado' })

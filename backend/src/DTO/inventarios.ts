@@ -1,5 +1,5 @@
 import {Expose, Type, Transform} from "class-transformer";
-import {IsInt, IsDate, MaxLength} from 'class-validator';
+import {IsInt, IsDate} from 'class-validator';
 import 'reflect-metadata';
 
 export class inventarios{
