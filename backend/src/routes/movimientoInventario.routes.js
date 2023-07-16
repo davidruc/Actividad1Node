@@ -20,7 +20,7 @@ routerMovimientoInventario.put("/:id?", (req, res)=>{
         let {id_bodega, id_producto, cantidad} = req.body;
         const busqueda = data.find(val =>(val.cantidad >= cantidad));
         if(busqueda !== undefined){
-            //Inicialmente la bodega de donde vamos a tomar los productos es la que tiene el id que ingresamos.
+            //Inicialmente la bodega de donde vamos a tomar los productos es la que está en el id del inventario buscado.
             cantidad = busqueda.cantidad - cantidad;
             const inventario = {cantidad};
             con.query("UPDATE inventarios SET ? WHERE id = ?", [inventario, req.params.id], (err, data2) =>{
@@ -60,11 +60,11 @@ routerMovimientoInventario.put("/:id?", (req, res)=>{
                                                         //Se crean todas las veriables que necesita el historial para ingresar los datos
                                                         cantidad = req.body.cantidad;
                                                         const id_bodega_origen  = req.params.id;
-                                                        const id_bodega_destino = idBodegaDestino;
+                                                        const id_bodega_destino = busqueda.id_bodega;
                                                         const id_inventario = data6[0].id;
                                                         const created_by = data6[0].created_by;
                                                         const update_by = data6[0].update_by;
-                                                        const datosHistorial = {cantidad, id_bodega_origen, id_bodega_destino, id_inventario, created_by, update_by}
+                                                        const datosHistorial = {cantidad, id_bodega_origen, id_bodega_destino, id_inventario, created_by, update_by};
                                                         con.query("INSERT INTO historiales SET ?", datosHistorial, (err, data9)=>{
                                                             if(err){
                                                                 console.error(`Error al insertar en el historial la transacción:`, err.message);
