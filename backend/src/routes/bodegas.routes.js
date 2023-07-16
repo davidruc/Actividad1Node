@@ -25,7 +25,8 @@ routerBodegas.get("/", (req, res)=>{
     bodegas.updated_at AS "actualizada_el", 
     bodegas.deleted_at AS "eliminada_el" 
     FROM bodegas 
-    INNER JOIN users ON bodegas.id_responsable = users.id ORDER BY bodegas.nombre`, (err, data, fil)=>{
+    INNER JOIN users ON bodegas.id_responsable = users.id 
+    ORDER BY bodegas.nombre`, (err, data, fil)=>{
         if (err) {
             console.error('Error al obtener los datos:', err.message);
             res.sendStatus(500);
@@ -34,7 +35,16 @@ routerBodegas.get("/", (req, res)=>{
           }
     })
 });
-/* router.post("/", bodegaControllers.postBodegas); */
+routerBodegas.post("/", (req, res)=>{
+  con.query(`INSERT INTO bodegas SET ?`, req.body,(err, data) => {
+      if (err) {
+          console.error('Error al crear la bodega:', err.message);
+          res.sendStatus(500);
+      } else {
+          res.send(data);
+      }
+  })
+});
 
 
 export default routerBodegas;

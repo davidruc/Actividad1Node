@@ -23,7 +23,7 @@ app.use("/api/bodegas", bodegaRoute);
   "deleted_at": */
 
 app.use("/api/productos/total", routerProduct);
-/* app.use("/api/insert/productos", routerProduct); */
+app.use("/api/insert/productos", routerProduct);
 /* 
  Los parámetros para agregar productos y que se guarde de manera automática el inventario en una bodega default:
  "nombre":,
